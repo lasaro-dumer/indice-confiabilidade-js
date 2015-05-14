@@ -1,2 +1,2 @@
-# indice-confiabilidade-js
-Indice de confiabilidade em node-js
+# intervalo-confianca-js  
+Intervalo de Confiança em node-js

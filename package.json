@@ -1,7 +1,7 @@
 {
-  "name": "indice-confiabilidade-js",
+  "name": "intervalo-confianca-js",
   "version": "1.0.0",
-  "description": "Indice de confiabilidade em node-js",
+  "description": "Intervalo de Confiança em node-js",
   "main": "main.js",
   "engines" : {
     "node" : "0.10.^"
@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lasaro-dumer/indice-confiabilidade-js.git"
+    "url": "https://github.com/lasaro-dumer/intervalo-confianca-js.git"
   },
   "author": {
     "name": "lasaro-dumer",
     "email": "ladumer@hotmail.com"
   },
   "bugs": {
-    "url": "https://github.com/lasaro-dumer/indice-confiabilidade-js/issues"
+    "url": "https://github.com/lasaro-dumer/intervalo-confianca-js/issues"
   },
-  "homepage": "https://github.com/lasaro-dumer/indice-confiabilidade-js",
+  "homepage": "https://github.com/lasaro-dumer/intervalo-confianca-js",
   "dependencies": {
     "express": "3.4.4",
     "express-session": "*",

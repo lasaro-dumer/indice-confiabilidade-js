@@ -3,5 +3,5 @@
 */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Financial Management'});
+  res.render('index', { title: 'Intervalo de Confiança'});
 }
