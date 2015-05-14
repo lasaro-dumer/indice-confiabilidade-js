@@ -1,0 +1,32 @@
+{
+  "name": "indice-confiabilidade-js",
+  "version": "1.0.0",
+  "description": "Indice de confiabilidade em node-js",
+  "main": "main.js",
+  "engines" : {
+    "node" : "0.10.^"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lasaro-dumer/indice-confiabilidade-js.git"
+  },
+  "author": {
+    "name": "lasaro-dumer",
+    "email": "ladumer@hotmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/lasaro-dumer/indice-confiabilidade-js/issues"
+  },
+  "homepage": "https://github.com/lasaro-dumer/indice-confiabilidade-js",
+  "dependencies": {
+    "express": "3.4.4",
+    "express-session": "*",
+    "jade": "*",
+    "pg": "2.x",
+    "stylus": "*",
+    "socket.io": "^1.0.6"
+  }
+}
