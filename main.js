@@ -5,6 +5,7 @@
 var express = require('express');
 var session = require('express-session');
 var routes = require('./routes');
+var execute = require('./routes/execute');
 var path = require('path');
 var pg = require('pg');
 
@@ -34,6 +35,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/execute', execute.execute);
+
 var io = require('socket.io').listen(app.listen(app.get('port'), function(){
                                         process.env.NODE_ENV = app.get('env');
                                         console.log("Running in "+ process.env.NODE_ENV +" mode");
