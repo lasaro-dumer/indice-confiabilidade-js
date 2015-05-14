@@ -4,3 +4,22 @@ block content
   h1.welcome.title= title
   div.welcome.text
     p Bem vindo ao #{title}
+    form.login(id="formlogin",action='partidas',method="POST")
+      span População (N):
+      input(type='text',id="popN",name="popN",value= '5000')
+      span Tamanho amostra (n):
+      input(type='text',id="tamAmostra",name="tamAmostra",value= '30')
+      span Quantidade interações:
+      input(type='text',id="interCount",name="interCount",value= '500')
+      input.btn(type='button',style='float:right;',id="executar",value='Executar')
+  script.
+    $(document).ready(function() {
+      console.log("ready!");
+      $("#executar").click(function () {
+          var popN = 'popN=' + $('#popN').val();
+          var tamAmostra = 'tamAmostra=' + $('#tamAmostra').val();
+          var interCount = 'interCount=' + $('#interCount').val();
+          var url = '\\execute?' + popN + '&'+ tamAmostra+ '&'+ interCount;
+          console.log(url);
+      });
+    });
