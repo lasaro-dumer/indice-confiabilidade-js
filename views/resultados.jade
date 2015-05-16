@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    div.resultados
+        h1 Resultados
+        a(href="/") Voltar
+        table.unidades
+            tr
+                td Tamanho da população
+                td #{popN}
+            tr
+                td Tamanho da amostra
+                td #{tamAmostra}
+            tr
+                td Indice de confiança
+                td #{IC}%
+            tr
+                td Quantidade de interações
+                td #{interCount}
+            tr
+                td Valor de t para o calculos
+                td #{t}
+            tr
+                td Média da população (mi)
+                td #{mi}
+            tr
+                td ICs calculados
+                td #{qtdICs}
+            tr
+                td Quantidade de ICs que contem mi
+                td #{qtdContem}(#{porcentagemComMi}%)
+
+        h2 Intervalos de Confiança
+        table.intervalos
+            tr
+                th Inicio
+                th Fim
+            each IC in ICs
+                tr
+                    td= IC.inicio
+                    td= IC.fim

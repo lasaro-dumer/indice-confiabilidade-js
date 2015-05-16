@@ -7,12 +7,16 @@ block content
     form.login(id="formlogin",action='partidas',method="POST")
       span População (N):
       input(type='text',id="popN",name="popN",value= '5000')
+
       span Tamanho amostra (n):
       input(type='text',id="tamAmostra",name="tamAmostra",value= '30')
+
+      span Indice de Confiança (%):
+      input(type='text',id="IC",name="IC",value= '95')
+
       span Quantidade interações:
       input(type='text',id="interCount",name="interCount",value= '500')
-      span Intervalo de Confiança (%):
-      input(type='text',id="IC",name="IC",value= '95')
+
       input.btn(type='button',style='float:right;',id="executar",value='Executar')
   script.
     $(document).ready(function() {

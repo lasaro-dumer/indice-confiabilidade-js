@@ -25,34 +25,36 @@ exports.execute = function(req, res){
 
         var ICs = [];
         var qtdContemMi = 0;
-        console.log({popN:popN,tamAmostra:tamAmostra,IC:IC,interCount:interCount,t:t,mi:mi,populacao_length:populacao.length,populacao:populacao});
-        console.log('iniciando interacoes');
         for (var i = 0; i < interCount; i++) {
             var amostra = [];
             var naAmostra = [];
             var somaAmostra = 0;
-            console.log('montando amostra da iteracao ' + i);
             while(naAmostra.length < tamAmostra){
-                var j = myMath.randomIntInc(0,popN);
-                if(!naAmostra.indexOf(j)){
+                var j = myMath.randomIntInc(0,popN-1);
+                if(naAmostra.indexOf(j) == -1){
                     amostra.push(populacao[j]);
                     naAmostra.push(j);
-                    somaAmostra += amostra[amostra.length-1];
+                    somaAmostra += populacao[j];
                 }
             }
             var X = somaAmostra / tamAmostra;
 
-            console.log('calculando IC da iteracao ' + i);
             var s = myMath.variancia(amostra,X).desvioPadrao;
             var desvio = t * (s/sqrtN);
-            var intervalo = [X-desvio,X+desvio];
+            var intervalo = {inicio:X-desvio,fim:X+desvio};
             ICs.push(intervalo);
-            if(intervalo[0]<= mi && intervalo[1]>=mi){
+            if(intervalo.inicio<= mi && intervalo.fim>=mi){
                 qtdContemMi++;
             }
         }
-        console.log('fim interacoes');
 
-        res.send({popN:popN,tamAmostra:tamAmostra,IC:IC,interCount:interCount,t:t,mi:mi,populacao_length:populacao.length,populacao:populacao,ICs:ICs,qtdContemMi:qtdContemMi});
+        var resultados = {popN:popN,tamAmostra:tamAmostra,IC:IC,interCount:interCount,t:t,mi:mi,qtdICs:ICs.length,ICs:undefined,
+                         qtdContemMi:qtdContemMi,porcentagemComMi:((qtdContemMi*100)/interCount)};
+        console.log(resultados);
+
+        resultados.ICs = ICs;
+
+        //res.send(resultados);
+        res.render('resultados', resultados);
     }
 }

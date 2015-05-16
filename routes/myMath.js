@@ -1,9 +1,9 @@
 
 exports.media = function (amostra){
-    console.log('calculando média');
+    //console.log('calculando média');
     var somaAmostra = 0;
     for(var j=0;j < amostra.length;j++){
-        somaAmostra += amostra[amostra.length-1];
+        somaAmostra += amostra[j];
     }
     var X = somaAmostra / amostra.length;
     return X;
@@ -14,7 +14,7 @@ exports.variancia = function (amostra,X){
     if(!X)
         X = this.media(amostra);
 
-    console.log('calculando variancia');
+    //console.log('calculando variancia');
 
     var somVari = 0;
     for(var j=0;j < amostra.length;j++){
