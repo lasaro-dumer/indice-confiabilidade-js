@@ -1,33 +1,43 @@
 extends layout
 
 block content
-  h1.welcome.title= title
-  div.welcome.text
-    p Bem vindo ao #{title}
-    form.login(id="formlogin",action='partidas',method="POST")
-      span População (N):
-      input(type='text',id="popN",name="popN",value= '5000')
+    h1.welcome.title= title
+    div.welcome.text
+        p Bem vindo ao #{title}
+        form.login(id="formlogin",action='partidas',method="POST")
+            span População (N):
+            input(type='text',id="popN",name="popN",value= '5000')
 
-      span Tamanho amostra (n):
-      input(type='text',id="tamAmostra",name="tamAmostra",value= '30')
+            span Tamanho amostra (n):
+            input(type='text',id="tamAmostra",name="tamAmostra",value= '30')
 
-      span Indice de Confiança (%):
-      input(type='text',id="IC",name="IC",value= '95')
+            span Indice de Confiança (%):
+            input(type='text',id="IC",name="IC",value= '95')
 
-      span Quantidade interações:
-      input(type='text',id="interCount",name="interCount",value= '500')
+            span Quantidade interações:
+            input(type='text',id="interCount",name="interCount",value= '500')
 
-      input.btn(type='button',style='float:right;',id="executar",value='Executar')
-  script.
-    $(document).ready(function() {
-      console.log("ready!");
-      $("#executar").click(function () {
-          var popN = 'popN=' + $('#popN').val();
-          var tamAmostra = 'tamAmostra=' + $('#tamAmostra').val();
-          var interCount = 'interCount=' + $('#interCount').val();
-          var IC = 'IC=' + $('#IC').val();
-          var url = '\\execute?' + popN + '&'+ tamAmostra+ '&'+ interCount+ '&'+ IC;
-          console.log(url);
-          window.location.href=url;
-      });
-    });
+            span Retornar amostras:
+            input(type='checkbox',id="retornarAmostras",name="retornarAmostras",checked=true)
+
+            span Retornar intervalos:
+            input(type='text',id="retornarICs",name="retornarICs",value= '500')
+
+            input.btn(type='button',style='float:right;',id="executar",value='Executar')
+    script.
+        $(document).ready(function() {
+            console.log("ready!");
+            $("#executar").click(function () {
+                var popN = 'popN=' + $('#popN').val();
+                var tamAmostra = 'tamAmostra=' + $('#tamAmostra').val();
+                var interCount = 'interCount=' + $('#interCount').val();
+                var IC = 'IC=' + $('#IC').val();
+
+                var retornarAmostras = 'retornarAmostras=' + $('#retornarAmostras').val();
+                var retornarICs = 'retornarICs=' + $('#retornarICs').val();
+
+                var url = '\\execute?' + popN + '&'+ tamAmostra+ '&'+ interCount+ '&'+ IC+ '&'+ retornarAmostras+ '&'+ retornarICs;
+                console.log(url);
+                //window.location.href=url;
+            });
+        });

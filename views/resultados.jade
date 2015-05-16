@@ -29,13 +29,20 @@ block content
             tr
                 td Quantidade de ICs que contem mi
                 td #{qtdContem}(#{porcentagemComMi}%)
-
-        h2 Intervalos de Confiança
-        table.intervalos
-            tr
-                th Inicio
-                th Fim
-            each IC in ICs
+        if amostras
+            h2 Amostras
+            table.amostras
+                each amostra,i in amostras
+                    tr
+                        td= i
+                        td= amostra
+        if ICs
+            h2 Intervalos de Confiança
+            table.intervalos
                 tr
-                    td= IC.inicio
-                    td= IC.fim
+                    th Inicio
+                    th Fim
+                each IC in ICs
+                    tr
+                        td= IC.inicio
+                        td= IC.fim

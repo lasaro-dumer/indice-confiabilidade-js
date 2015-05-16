@@ -6,6 +6,11 @@ exports.execute = function(req, res){
     var tamAmostra = req.query.tamAmostra;
     var IC = req.query.IC;
     var interCount = req.query.interCount;
+    var retornarAmostras = req.query.retornarAmostras == 'true';
+    var retornarICs = req.query.retornarICs == 'true';
+    var raw = req.query.raw == 'true';
+
+    console.log({retornarICs:retornarICs,retornarAmostras:retornarAmostras,raw:raw})
 
     if( !(popN) || !(tamAmostra) || !(interCount) || !(IC)){
         res.send('Parametros insuficientes');
@@ -24,6 +29,7 @@ exports.execute = function(req, res){
         var sqrtN = Math.sqrt(tamAmostra);
 
         var ICs = [];
+        var amostras = [];
         var qtdContemMi = 0;
         for (var i = 0; i < interCount; i++) {
             var amostra = [];
@@ -42,19 +48,26 @@ exports.execute = function(req, res){
             var s = myMath.variancia(amostra,X).desvioPadrao;
             var desvio = t * (s/sqrtN);
             var intervalo = {inicio:X-desvio,fim:X+desvio};
+            amostras.push(amostra);
             ICs.push(intervalo);
             if(intervalo.inicio<= mi && intervalo.fim>=mi){
                 qtdContemMi++;
             }
         }
 
-        var resultados = {popN:popN,tamAmostra:tamAmostra,IC:IC,interCount:interCount,t:t,mi:mi,qtdICs:ICs.length,ICs:undefined,
+        var resultados = {popN:popN,tamAmostra:tamAmostra,IC:IC,interCount:interCount,t:t,mi:mi,qtdICs:ICs.length,amostras:undefined,ICs:undefined,
                          qtdContemMi:qtdContemMi,porcentagemComMi:((qtdContemMi*100)/interCount)};
-        console.log(resultados);
 
-        resultados.ICs = ICs;
+        //console.log(resultados);
 
-        //res.send(resultados);
-        res.render('resultados', resultados);
+        if(retornarICs)
+            resultados.ICs = ICs;
+        if(retornarAmostras)
+            resultados.amostras=amostras;
+
+        if(raw)
+            res.send(resultados);
+        else
+            res.render('resultados', resultados);
     }
 }
