@@ -17,11 +17,11 @@ block content
             span Quantidade interações:
             input(type='text',id="interCount",name="interCount",value= '500')
 
-            span Retornar amostras:
-            input(type='checkbox',id="retornarAmostras",name="retornarAmostras",checked=true)
+            input.check(type='checkbox',id="retornarAmostras",name="retornarAmostras",checked=false)
+            span.check Retornar amostras
 
-            span Retornar intervalos:
-            input(type='text',id="retornarICs",name="retornarICs",value= '500')
+            input.check(type='checkbox',id="retornarICs",name="retornarICs",checked=false)
+            span.check Retornar intervalos
 
             input.btn(type='button',style='float:right;',id="executar",value='Executar')
     script.
@@ -33,11 +33,11 @@ block content
                 var interCount = 'interCount=' + $('#interCount').val();
                 var IC = 'IC=' + $('#IC').val();
 
-                var retornarAmostras = 'retornarAmostras=' + $('#retornarAmostras').val();
-                var retornarICs = 'retornarICs=' + $('#retornarICs').val();
+                var retornarAmostras = 'retornarAmostras=' + $('#retornarAmostras').is(":checked");
+                var retornarICs = 'retornarICs=' + $('#retornarICs').is(":checked");
 
                 var url = '\\execute?' + popN + '&'+ tamAmostra+ '&'+ interCount+ '&'+ IC+ '&'+ retornarAmostras+ '&'+ retornarICs;
                 console.log(url);
-                //window.location.href=url;
+                window.location.href=url;
             });
         });
